@@ -109,9 +109,9 @@ void inputParking(BusinessTrip&);
 void inputTaxi(BusinessTrip&);
 void inputRegistration(BusinessTrip&);
 void inputHotel(BusinessTrip&);
-void inputBreakfast(BusinessTrip&);
-void inputLunch(BusinessTrip&);
-void inputDinner(BusinessTrip&);
+void inputBreakfast(double*);
+void inputLunch(double*);
+void inputDinner(double*);
 void inputMeals(BusinessTrip&);
 void output(BusinessTrip&);
 
@@ -182,7 +182,7 @@ void inputDaysSpent(BusinessTrip& trip) {
 void inputDepartureTime(BusinessTrip& trip) {
 
     promptUserTime(trip.departureTime,
-        "Departure time, in 24-hour time: ",
+        "Departure time, in 24-hour time (e.g., 07:30, 22:10): ",
         "Invalid time : e.g., 07:30, 22:10",
         isValidTime);
 }
@@ -195,7 +195,7 @@ void inputDepartureTime(BusinessTrip& trip) {
 void inputReturnTime(BusinessTrip& trip) {
 
     promptUserTime(trip.returnTime,
-        "Return time, in 24-hour time: ",
+        "Return time, in 24-hour time (e.g., 07:30, 22:10): ",
         "Invalid time : e.g., 07:30, 22:10",
         isValidTime);
 }
@@ -393,9 +393,12 @@ void inputHotel(BusinessTrip& trip) {
 
 /**
  * Asks the user for the amount spent on one breakfast meal.
- * @param &trip  A BusinessTrip object to which we write data.
+ * Stores the data to a temporary double array so that we can calculate spending
+ * for all the meals in the trip.
+ * @param spendingData  A double array to which we write data.
+ *                      [0]: totalSpent, [1]: totalAllowable
  */
-void inputBreakfast(BusinessTrip& trip) {
+void inputBreakfast(double* spendingData) {
 
     double totalSpent     = 0.0;
     double totalAllowable = 0.0;
@@ -409,16 +412,21 @@ void inputBreakfast(BusinessTrip& trip) {
     // Get totalAllowable.
     totalAllowable = BusinessTrip::MAX_DAILY_BREAKFAST;
 
-    // Add totalSpent and totalAllowable to our data storage.
-    trip.updateRecord(totalSpent, totalAllowable);
+    // Add totalSpent and totalAllowable to our temporary storage so that
+    // we can add them for the all meals.
+    spendingData[ 0 ] += totalSpent;
+    spendingData[ 1 ] += totalAllowable;
 }
 
 
 /**
  * Asks the user for the amount spent on one lunch meal.
- * @param &trip  A BusinessTrip object to which we write data.
+ * Stores the data to a temporary double array so that we can calculate spending
+ * for all the meals in the trip.
+ * @param spendingData  A double array to which we write data.
+ *                      [0]: totalSpent, [1]: totalAllowable
  */
-void inputLunch(BusinessTrip& trip) {
+void inputLunch(double* spendingData) {
 
     double totalSpent     = 0.0;
     double totalAllowable = 0.0;
@@ -432,16 +440,21 @@ void inputLunch(BusinessTrip& trip) {
     // Get totalAllowable.
     totalAllowable = BusinessTrip::MAX_DAILY_LUNCH;
 
-    // Add totalSpent and totalAllowable to our data storage.
-    trip.updateRecord(totalSpent, totalAllowable);
+    // Add totalSpent and totalAllowable to our temporary storage so that
+    // we can add them for the all meals.
+    spendingData[ 0 ] += totalSpent;
+    spendingData[ 1 ] += totalAllowable;
 }
 
 
 /**
  * Asks the user for the amount spent on one dinner meal.
- * @param &trip  A BusinessTrip object to which we write data.
+ * Stores the data to a temporary double array so that we can calculate spending
+ * for all the meals in the trip.
+ * @param spendingData  A double array to which we write data.
+ *                      [0]: totalSpent, [1]: totalAllowable
  */
-void inputDinner(BusinessTrip& trip) {
+void inputDinner(double* spendingData) {
 
     double totalSpent     = 0.0;
     double totalAllowable = 0.0;
@@ -455,8 +468,10 @@ void inputDinner(BusinessTrip& trip) {
     // Get totalAllowable.
     totalAllowable = BusinessTrip::MAX_DAILY_DINNER;
 
-    // Add totalSpent and totalAllowable to our data storage.
-    trip.updateRecord(totalSpent, totalAllowable);
+    // Add totalSpent and totalAllowable to our temporary storage so that
+    // we can add them for the all meals.
+    spendingData[ 0 ] += totalSpent;
+    spendingData[ 1 ] += totalAllowable;
 }
 
 
@@ -466,19 +481,24 @@ void inputDinner(BusinessTrip& trip) {
  */
 void inputMeals(BusinessTrip& trip) {
 
+    // Temporary data store for spending.
+    // We add each spending item to this double array.
+    // [0]: totalSpent, [1]: totalAllowable
+    double spendingData[2] = { 0.0, 0.0 };  // Initially 0.0
+
     // One day trip.
     if (trip.totalTripDays == 1) {
 
         if (trip.departureTime[0] < 7 && trip.returnTime[0] >= 8) {
-            inputBreakfast(trip);
+            inputBreakfast(spendingData);
         }
 
         if (trip.departureTime[0] < 12 && trip.returnTime[0] >= 13) {
-            inputLunch(trip);
+            inputLunch(spendingData);
         }
 
         if (trip.departureTime[0] < 18 && trip.returnTime[0] >= 19) {
-            inputDinner(trip);
+            inputDinner(spendingData);
         }
 
     } else {
@@ -493,23 +513,23 @@ void inputMeals(BusinessTrip& trip) {
         } else {
 
             if (trip.departureTime[0] < 7) {
-                inputBreakfast(trip);  // Get breakfast if departure is at 7am or ealier.
+                inputBreakfast(spendingData);  // Get breakfast if departure is at 7am or ealier.
             }
 
             if (trip.departureTime[0] < 12) {
-                inputLunch(trip);      // Get lunch if departure is at 12pm or later.
+                inputLunch(spendingData);      // Get lunch if departure is at 12pm or later.
             }
 
-            inputDinner(trip);
+            inputDinner(spendingData);
         }
 
         // 2nd day through the day before last.
         for (int count = 2; count < trip.totalTripDays; count++) {
 
             cout << "----[Day " << count << "]----" << endl;
-            inputBreakfast(trip);
-            inputLunch(trip);
-            inputDinner(trip);
+            inputBreakfast(spendingData);
+            inputLunch(spendingData);
+            inputDinner(spendingData);
         }
 
         // Last day
@@ -519,17 +539,20 @@ void inputMeals(BusinessTrip& trip) {
             cout << "No meals allowed due to return before 8am" << endl;
 
         } else {
-            inputBreakfast( trip );
+            inputBreakfast(spendingData);
 
             if (trip.returnTime[0] >= 13) {
-                inputLunch(trip);   // Get lunch if arrival is 1pm or later.
+                inputLunch(spendingData);   // Get lunch if arrival is 1pm or later.
             }
 
             if (trip.returnTime[0] >= 19) {
-                inputDinner(trip);  // Get dinner if arrival is 7pm or later.
+                inputDinner(spendingData);  // Get dinner if arrival is 7pm or later.
             }
         }
     }
+
+    // Finally, add totalSpent and totalAllowable to our data storage.
+    trip.updateRecord(spendingData[ 0 ], spendingData[ 1 ]);
 }
 
 

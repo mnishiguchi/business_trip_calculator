@@ -23,51 +23,46 @@ return time:           21:00
 ### Airfair                
 If user enter 300 for total airfair,
 ```
-**TODO**
-Total expenses:          $  ???
-Allowable expenses:      $  ???
-Out out pocket:          $  ???
-Saved                    $  ???
+Total expenses:          $  300
+Allowable expenses:      $  300
+Out out pocket:          $  0
+Saved                    $  0
 ```
 
 ### car rental         
 If user enter 200 for total car rental fees,
 ```
-**TODO**
-Total expenses:          $  ???
-Allowable expenses:      $  ???
-Out out pocket:          $  ???
-Saved                    $  ???
+Total expenses:          $  200
+Allowable expenses:      $  200
+Out out pocket:          $  0
+Saved                    $  0
 ```
 
 ### private vehicle  
 If user enter 50 for milage driven by private vehicle
 ```
-**TODO**
-Total expenses:          $  ???
-Allowable expenses:      $  ???
-Out out pocket:          $  ???
-Saved                    $  ???
+Total expenses:          50 mile  * $ 0.27 = $13.50  
+Allowable expenses:      $  13.50
+Out out pocket:          $  0
+Saved                    $  0
 ```
 
 ### parking          
 If user enter 30 for total parking fees
 ```
-**TODO**
-Total expenses:          $  ???
-Allowable expenses:      $  ???
-Out out pocket:          $  ???
-Saved                    $  ???
+Total expenses:          $  30
+Allowable expenses:      $  18
+Out out pocket:          $  12
+Saved                    $  0
 ```
 
 ### taxi              
 If user enter 50 for total taxi fees
 ```
-**TODO**
-Total expenses:          $  ???
-Allowable expenses:      $  ???
-Out out pocket:          $  ???
-Saved                    $  ???
+Total expenses:          $  50
+Allowable expenses:      $  30
+Out out pocket:          $  20
+Saved                    $  0
 ```
 
 ### registration      
@@ -169,59 +164,3 @@ Out out pocket:          $  ???
 Saved                    $  ???
 ```
 
-==
-
-## OUTPUT
-
-```
-How many days did you spent on this trip? 
->>> 3
-Departure time, in 24-hour time: 
->>> 8.00
-Return time, in 24-hour time: 
->>> 21.00
-Total amount of airfair: 
->>> 300
-Total amount of car rental fees: 
->>> 200
-Total miles driven by a private vehicle: 
->>> 50
-Total amount of parking fees: 
->>> 30
-Total amount of taxi fees: 
->>> 50
-Total amount of registration fees: 
->>> 50
-Nightly hotel rate: 
->>> 100
-----[Day 1]----
-Lunch: 
->>> 10
-Dinner: 
->>> 20
-----[Day 2]----
-Breakfast: 
->>> 8
-Lunch: 
->>> 12
-Dinner: 
->>> 23
-----[Day 3]----
-Breakfast: 
->>> 10
-Lunch: 
->>> 13
-Dinner: 
->>> 16
-```
-
-```
-Total days:    03
-departureTime: 08:00
-returnTime:    21:00
-
-Total expenses:     $  955.50
-Allowable expenses: $  893.50
-Out of pocket:      $   65.00
-Amount saved:       $    3.00
-```
