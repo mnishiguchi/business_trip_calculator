@@ -21,7 +21,7 @@ return time:           21:00
 ```
 
 ### Airfair                
-If user enter 300 for total airfair,
+If user enter 300 for total airfair...
 ```
 Total expenses:          $  300
 Allowable expenses:      $  300
@@ -29,8 +29,8 @@ Out out pocket:          $  0
 Saved                    $  0
 ```
 
-### car rental         
-If user enter 200 for total car rental fees,
+### Car rental         
+If user enter 200 for total car rental fees...
 ```
 Total expenses:          $  200
 Allowable expenses:      $  200
@@ -38,8 +38,8 @@ Out out pocket:          $  0
 Saved                    $  0
 ```
 
-### private vehicle  
-If user enter 50 for milage driven by private vehicle
+### Private vehicle  
+If user enter 50 for milage driven by private vehicle...
 ```
 Total expenses:          50 mile  * $ 0.27 = $13.50  
 Allowable expenses:      $  13.50
@@ -47,8 +47,8 @@ Out out pocket:          $  0
 Saved                    $  0
 ```
 
-### parking          
-If user enter 30 for total parking fees
+### Parking          
+If user enter 30 for total parking fees...
 ```
 Total expenses:          $  30
 Allowable expenses:      $  18
@@ -56,8 +56,8 @@ Out out pocket:          $  12
 Saved                    $  0
 ```
 
-### taxi              
-If user enter 50 for total taxi fees
+### Taxi              
+If user enter 50 for total taxi fees...
 ```
 Total expenses:          $  50
 Allowable expenses:      $  30
@@ -65,8 +65,8 @@ Out out pocket:          $  20
 Saved                    $  0
 ```
 
-### registration      
-If user enter 50 for total registration fees
+### Registration      
+If user enter 50 for total registration fees...
 ```
 Total expenses:          $  50
 Allowable expenses:      $  50
@@ -74,8 +74,8 @@ Out out pocket:          $  0
 Saved                    $  0
 ```
 
-### hotel 
-If user enter 100 for nightly hotel room rate:
+### Hotel 
+If user enter 100 for nightly hotel room rate...
 
 - since the duration is longer than one day, hotel stay is allowed;
 - number of hotel stay: 3 - 1 = 2 nights;
@@ -90,9 +90,9 @@ Out out pocket:          $   20
 Saved                    $    0
 ```
 
-### meals
+### Meals
 
-Company max
+Company max for each day
 ```
 MAX_DAILY_BREAKFAST =  9.00;
 MAX_DAILY_LUNCH     = 12.00;
@@ -115,7 +115,7 @@ Meals allowed
 - dinner:     Yes
 ```
 
-If user enter the following values for the meals:
+If user enter the following values for the meals...
 ```
 ----[Day 1]----
 Lunch:     10
@@ -154,12 +154,12 @@ Out out pocket:     $   10
 Saved               $    0
 ```
 
-### totals
+### Totals
 
 ```
-Total days:    03
-departureTime: 08:00
-returnTime:    21:00
+Total days:     03
+Departure time: 08:00
+Return time:    21:00
 
 Total expenses:     $  955.50
 Allowable expenses: $  893.50

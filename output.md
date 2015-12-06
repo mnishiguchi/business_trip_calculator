@@ -45,9 +45,9 @@ Dinner:
 ```
 
 ```
-Total days:    03
-departureTime: 08:00
-returnTime:    21:00
+Total days:     03
+Departure time: 08:00
+Return time:    21:00
 
 Total expenses:     $  955.50
 Allowable expenses: $  893.50

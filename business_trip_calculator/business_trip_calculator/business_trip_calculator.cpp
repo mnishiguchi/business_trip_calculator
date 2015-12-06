@@ -28,8 +28,8 @@ struct BusinessTrip {
 
     // Member variables.
     int totalTripDays;
-    int* departureTime;
-    int* returnTime;
+    int departureTime[2];
+    int returnTime[2];
     double totalSpent, totalAllowable, outOfPocket, saved;
 
 
@@ -38,12 +38,14 @@ struct BusinessTrip {
      */
     BusinessTrip() {
 
-        totalTripDays  = 0;
+        totalTripDays  = -1;
 
         // The departure time (first day) and return time (last day)
         // in 24 hour time, [0]: hours, [1]: minutes
-        departureTime  = new int[2];
-        returnTime     = new int[2];
+        departureTime[ 0 ] = -1;
+        departureTime[ 1 ] = -1;
+        returnTime[ 0 ]    = -1;
+        returnTime[ 1 ]    = -1;
 
         // The total amount incurred by the businessperson.
         totalSpent = 0.0;
@@ -63,8 +65,8 @@ struct BusinessTrip {
 
     /**
      * Update the record of the expenses by adding the specified values.
-     * @param spent      a value to be added to totalSpent
-     * @param allowable  a value to be added to totalAllowable
+     * @param spent      A value to be added to totalSpent.
+     * @param allowable  A value to be added to totalAllowable.
      */
     void updateRecord(double spent, double allowable) {
 
@@ -101,7 +103,7 @@ const double BusinessTrip::MAX_DAILY_DINNER         = 16.00;
 void inputDaysSpent(BusinessTrip&);
 void inputDepartureTime(BusinessTrip&);
 void inputReturnTime(BusinessTrip&);
-bool isValidTime(int*);
+bool isValidTime(int[]);
 void inputAirfair(BusinessTrip&);
 void inputCarRental(BusinessTrip&);
 void inputPrivateVehicle(BusinessTrip&);
@@ -109,9 +111,9 @@ void inputParking(BusinessTrip&);
 void inputTaxi(BusinessTrip&);
 void inputRegistration(BusinessTrip&);
 void inputHotel(BusinessTrip&);
-void inputBreakfast(double*);
-void inputLunch(double*);
-void inputDinner(double*);
+void inputBreakfast(double[]);
+void inputLunch(double[]);
+void inputDinner(double[]);
 void inputMeals(BusinessTrip&);
 void output(BusinessTrip&);
 
@@ -208,8 +210,8 @@ void inputReturnTime(BusinessTrip& trip) {
  */
 bool isValidTime(int time[]) {
 
-    int hours   = time[0];
-    int minutes = time[1];
+    int hours   = time[ 0 ];
+    int minutes = time[ 1 ];
 
     return (hours >= 0 && hours < 24) && (minutes >= 0 && minutes < 60);
 }
@@ -398,7 +400,7 @@ void inputHotel(BusinessTrip& trip) {
  * @param spendingData  A double array to which we write data.
  *                      [0]: totalSpent, [1]: totalAllowable
  */
-void inputBreakfast(double* spendingData) {
+void inputBreakfast(double spendingData[]) {
 
     double totalSpent     = 0.0;
     double totalAllowable = 0.0;
@@ -426,7 +428,7 @@ void inputBreakfast(double* spendingData) {
  * @param spendingData  A double array to which we write data.
  *                      [0]: totalSpent, [1]: totalAllowable
  */
-void inputLunch(double* spendingData) {
+void inputLunch(double spendingData[]) {
 
     double totalSpent     = 0.0;
     double totalAllowable = 0.0;
@@ -454,7 +456,7 @@ void inputLunch(double* spendingData) {
  * @param spendingData  A double array to which we write data.
  *                      [0]: totalSpent, [1]: totalAllowable
  */
-void inputDinner(double* spendingData) {
+void inputDinner(double spendingData[]) {
 
     double totalSpent     = 0.0;
     double totalAllowable = 0.0;
@@ -489,15 +491,15 @@ void inputMeals(BusinessTrip& trip) {
     // One day trip.
     if (trip.totalTripDays == 1) {
 
-        if (trip.departureTime[0] < 7 && trip.returnTime[0] >= 8) {
+        if (trip.departureTime[ 0 ] < 7 && trip.returnTime[ 0 ] >= 8) {
             inputBreakfast(spendingData);
         }
 
-        if (trip.departureTime[0] < 12 && trip.returnTime[0] >= 13) {
+        if (trip.departureTime[ 0 ] < 12 && trip.returnTime[ 0 ] >= 13) {
             inputLunch(spendingData);
         }
 
-        if (trip.departureTime[0] < 18 && trip.returnTime[0] >= 19) {
+        if (trip.departureTime[ 0 ] < 18 && trip.returnTime[ 0 ] >= 19) {
             inputDinner(spendingData);
         }
 
@@ -507,16 +509,16 @@ void inputMeals(BusinessTrip& trip) {
         cout << "----[Day 1]----" << endl;
 
         // No dinner allowed if departure is at 6pm or later.
-        if (trip.departureTime[0] >= 18) {
+        if (trip.departureTime[ 0 ] >= 18) {
             cout << "No meals allowed due to departure after 6pm" << endl;
 
         } else {
 
-            if (trip.departureTime[0] < 7) {
+            if (trip.departureTime[ 0 ] < 7) {
                 inputBreakfast(spendingData);  // Get breakfast if departure is at 7am or ealier.
             }
 
-            if (trip.departureTime[0] < 12) {
+            if (trip.departureTime[ 0 ] < 12) {
                 inputLunch(spendingData);      // Get lunch if departure is at 12pm or later.
             }
 
@@ -535,17 +537,17 @@ void inputMeals(BusinessTrip& trip) {
         // Last day
         cout << "----[Day " << trip.totalTripDays << "]----" << endl;
 
-        if (trip.returnTime[0] < 8) {
+        if (trip.returnTime[ 0 ] < 8) {
             cout << "No meals allowed due to return before 8am" << endl;
 
         } else {
             inputBreakfast(spendingData);
 
-            if (trip.returnTime[0] >= 13) {
+            if (trip.returnTime[ 0 ] >= 13) {
                 inputLunch(spendingData);   // Get lunch if arrival is 1pm or later.
             }
 
-            if (trip.returnTime[0] >= 19) {
+            if (trip.returnTime[ 0 ] >= 19) {
                 inputDinner(spendingData);  // Get dinner if arrival is 7pm or later.
             }
         }
@@ -565,15 +567,15 @@ void output(BusinessTrip& trip) {
     // Display duration, departure time and return time.
     cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~" << endl;
 
-    cout << "Total days:    " << setfill('0')
+    cout << "Total days:     " << setfill('0')
          << setw(2) << trip.totalTripDays << endl;
 
-    cout << "departureTime: " << setfill('0')
+    cout << "Departure time: " << setfill('0')
          << setw(2) << trip.departureTime[0] << ":"
          << setw(2) << trip.departureTime[1]
          << setfill(' ') << endl;
 
-    cout << "returnTime:    " << setfill('0')
+    cout << "Return time:    " << setfill('0')
          << setw(2) << trip.returnTime[0] << ":"
          << setw(2) << trip.returnTime[1]
          << setfill(' ') << endl;
@@ -611,13 +613,17 @@ void fixInputStream() {
 /**
  * Prompts the user for data with the specified message and stores the data
  * in the passed-in variable.
+ * NOTE: Must specify a data type we want to process.
  * @param data           A variable in which the data will be stored.
  * @param promtMsg       A prompt message.
  * @param errorMsg       An error message.
- * @param conditionFun   A pointer to a function that returns bool.
+ * @param conditionFun   A pointer to a function that accept a value of specified
+ *                       data type and returns bool.
  */
 template <typename dataType>
-void promptUser(dataType& data, string promtMsg, string errorMsg,
+void promptUser(dataType& data,
+                string promtMsg,
+                string errorMsg,
                 bool (*conditionFun)(dataType value)) {
 
     bool isFinished = false;
@@ -641,12 +647,16 @@ void promptUser(dataType& data, string promtMsg, string errorMsg,
 /**
  * Prompts the user for time (hours and minutes, 24-hour time) with the specified
  * message and stores the data into the passed-in int array of size 2.
+ * NOTE: Must specify a data type we want to process.
  * @param data           An int array in which the data will be stored.
  * @param promtMsg       A prompt message.
  * @param errorMsg       An error message.
- * @param conditionFun   A pointer to a function that returns bool.
+ * @param conditionFun   A pointer to a function that accept a value of specified
+ *                       data type and returns bool.
  */
-void promptUserTime(int data[], string promtMsg, string errorMsg,
+void promptUserTime(int data[],
+                    string promtMsg,
+                    string errorMsg,
                     bool (*conditionFun)(int value[])) {
 
     bool isFinished = false;
@@ -671,6 +681,7 @@ void promptUserTime(int data[], string promtMsg, string errorMsg,
 
 
 /**
+ * NOTE: Must specify a data type we want to process.
  * @param value
  * @return true if the value is zero or greater.
  */
@@ -681,6 +692,7 @@ bool zeroOrGreater(dataType value) {
 
 
 /**
+ * NOTE: Must specify a data type we want to process.
  * @param value
  * @return true if the value is one or greater.
  */
