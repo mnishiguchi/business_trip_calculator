@@ -68,11 +68,10 @@ Saved                    $  0
 ### registration      
 If user enter 50 for total registration fees
 ```
-**TODO**
-Total expenses:          $  ???
-Allowable expenses:      $  ???
-Out out pocket:          $  ???
-Saved                    $  ???
+Total expenses:          $  50
+Allowable expenses:      $  50
+Out out pocket:          $  0
+Saved                    $  0
 ```
 
 ### hotel 
@@ -131,36 +130,39 @@ Lunch:     13
 Dinner:    16
 ```
 
+Allowable expenses for each meal
 ```
 ----[Day 1]----
-         totalSpent  totalAllowed  outOfPocket   saved
-Lunch:     10         12                0           2 
-Dinner:    20         16                4           0
+         totalSpent  totalAllowed
+Lunch:     10         12
+Dinner:    20         16
 ----[Day 2]----
-Breakfast:  8          9                0           1 
-Lunch:     12         12                0           0 
-Dinner:    23         16                7           0 
+Breakfast:  8          9
+Lunch:     12         12
+Dinner:    23         16
 ----[Day 3]----
-Breakfast: 10          9                1           0 
-Lunch:     13         12                1           0 
-Dinner:    16         16                0           0
+Breakfast: 10          9
+Lunch:     13         12
+Dinner:    16         16
 ```
 
+For all the meals
 ```
-Total expenses:          $  112
-Allowable expenses:      $  102
-Out out pocket:          $   13
-Saved                    $    3
+Total expenses:     $  112
+Allowable expenses: $  102
+Out out pocket:     $   10
+Saved               $    0
 ```
 
 ### totals
-We put together all the values above.
 
 ```
-**TODO**
-Total expenses:          $  ???
-Allowable expenses:      $  ???
-Out out pocket:          $  ???
-Saved                    $  ???
+Total days:    03
+departureTime: 08:00
+returnTime:    21:00
+
+Total expenses:     $  955.50
+Allowable expenses: $  893.50
+Out of pocket:      $   62.00
 ```
 
