@@ -21,7 +21,7 @@ return time:           21:00
 ```
 
 ### Airfair                
-If user enter 300 for total airfair...
+If user enters 300 for total airfair...
 ```
 Total expenses:          $  300
 Allowable expenses:      $  300
@@ -30,7 +30,7 @@ Saved                    $  0
 ```
 
 ### Car rental         
-If user enter 200 for total car rental fees...
+If user enters 200 for total car rental fees...
 ```
 Total expenses:          $  200
 Allowable expenses:      $  200
@@ -39,7 +39,7 @@ Saved                    $  0
 ```
 
 ### Private vehicle  
-If user enter 50 for milage driven by private vehicle...
+If user enters 50 for milage driven by private vehicle...
 ```
 Total expenses:          50 mile  * $ 0.27 = $13.50  
 Allowable expenses:      $  13.50
@@ -48,7 +48,7 @@ Saved                    $  0
 ```
 
 ### Parking          
-If user enter 30 for total parking fees...
+If user enters 30 for total parking fees...
 ```
 Total expenses:          $  30
 Allowable expenses:      $  18
@@ -57,7 +57,7 @@ Saved                    $  0
 ```
 
 ### Taxi              
-If user enter 50 for total taxi fees...
+If user enters 50 for total taxi fees...
 ```
 Total expenses:          $  50
 Allowable expenses:      $  30
@@ -66,7 +66,7 @@ Saved                    $  0
 ```
 
 ### Registration      
-If user enter 50 for total registration fees...
+If user enters 50 for total registration fees...
 ```
 Total expenses:          $  50
 Allowable expenses:      $  50
@@ -75,7 +75,7 @@ Saved                    $  0
 ```
 
 ### Hotel 
-If user enter 100 for nightly hotel room rate...
+If user enters 100 for nightly hotel room rate...
 
 - since the duration is longer than one day, hotel stay is allowed;
 - number of hotel stay: 3 - 1 = 2 nights;
@@ -115,7 +115,7 @@ Meals allowed
 - dinner:     Yes
 ```
 
-If user enter the following values for the meals...
+If user enters the following values for the meals...
 ```
 ----[Day 1]----
 Lunch:     10
